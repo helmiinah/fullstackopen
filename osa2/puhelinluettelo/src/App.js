@@ -64,6 +64,11 @@ const App = () => {
           setNewName('')
           setNewNumber('')
         })
+        .catch(error => {
+          setNewMessage(error.response.data)
+          setNewError(true)
+        })
+      setNewError(false)
       setNewMessage(`Added ${person.name}`)
     }
   }
@@ -95,6 +100,7 @@ const App = () => {
       .then(response => {
         setPersons(persons.filter(person => person.id !== delPerson.id))
       })
+      setNewError(false)
       setNewMessage(`Deleted ${delPerson.name}`)
     }
   }
